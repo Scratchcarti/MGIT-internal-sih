@@ -11,4 +11,5 @@ urlpatterns = [
     path('upload/', views.upload, name='upload'),
     path('status/', views.status, name='status'),
     path('sag/',views.sag,name='sag'),
+    path('verify_otp/', views.verify_otp, name='verify_otp'),
 ]
