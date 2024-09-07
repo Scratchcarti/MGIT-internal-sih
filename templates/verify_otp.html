@@ -1,0 +1,29 @@
+<!-- verify_otp.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verify OTP</title>
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+</head>
+<body>
+    <div class="container">
+        <div class="otp-box">
+            <h2>Enter OTP</h2>
+            {% if error %}
+                <div class="error">{{ error }}</div>
+            {% endif %}
+            <form action="" method="post">
+                {% csrf_token %}
+                <div class="input-group">
+                    <label for="otp">OTP</label>
+                    <input type="text" id="otp" name="otp" required>
+                </div>
+                <button type="submit" class="btn">Verify</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

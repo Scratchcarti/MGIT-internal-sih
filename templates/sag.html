@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scholarship And Grants Bureau</title>
+    <link rel="stylesheet" href="{% static 'stylesSAG.css' %}">
+</head>
+<body>
+    <div class="header">
+        <div class="logo">
+            <img src="{% static 'imagesD/aicte-logo.png'%}" alt="AICTE Logo">
+        </div>
+        <div class="title">
+            <h1>अखिल भारतीय तकनीकी शिक्षा परिषद्<br>All India Council for Technical Education</h1>
+        </div>
+        <div class="logout-container">
+            <a href="{% url 'logout' %}" class="logout-button">Logout</a>
+        </div>
+    </div>
+
+         
+    
+    <div class="content">
+        <div class="name">
+            <h2>Scholarship And Grants Bureau</h2>
+            <p>Documents Submitted By: </p>
+        </div>
+        <div class="documents-grid">
+            <div class="document">
+                <a href='{{ document.document.url }}' target="_blank"><div class="preview"></div>
+                <div class="label">Aadhar card</div>
+                <div class="dropdown">
+                    <select class="status-dropdown">
+                        <option value="Pending">Pending</option>
+                        <option value="Verified">Verified</option>
+                        <option value="Rejected">Rejected</option>
+                    </select>
+                </div>
+            </a>
+            </div>
+            <div class="document">
+                <div class="preview"></div>
+                <div class="label">Income Certificate</div>
+                <div class="dropdown">
+                    <select class="status-dropdown">
+                        <option value="Pending">Pending</option>
+                        <option value="Verified">Verified</option>
+                        <option value="Rejected">Rejected</option>
+                    </select>
+                </div>
+            </div>
+            <div class="document">
+                <div class="preview"></div>
+                <div class="label">Caste Certificate</div>
+                <div class="dropdown">
+                    <select class="status-dropdown">
+                        <option value="Pending">Pending</option>
+                        <option value="Verified">Verified</option>
+                        <option value="Rejected">Rejected</option>
+                    </select>
+                </div>
+            </div>
+            <div class="document">
+                <div class="preview"></div>
+                <div class="label">Domicile Certificate</div>
+                <div class="dropdown">
+                    <select class="status-dropdown">
+                        <option value="Pending">Pending</option>
+                        <option value="Verified">Verified</option>
+                        <option value="Rejected">Rejected</option>
+                    </select>
+                </div>
+            </div>
+            <div class="document">
+                <div class="preview"></div>
+                <div class="label">10th Certificate</div>
+                <div class="dropdown">
+                    <select class="status-dropdown">
+                        <option value="Pending">Pending</option>
+                        <option value="Verified">Verified</option>
+                        <option value="Rejected">Rejected</option>
+                    </select>
+                </div>
+            </div>
+            <div class="document">
+                <div class="preview"></div>
+                <div class="label">12th Certificate</div>
+                <div class="dropdown">
+                    <select class="status-dropdown">
+                        <option value="Pending">Pending</option>
+                        <option value="Verified">Verified</option>
+                        <option value="Rejected">Rejected</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="submit-btn-container">
+            <button class="submit-btn">Submit</button>
+        </div>
+    </div>
+</body>
+</html>

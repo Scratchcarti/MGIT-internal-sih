@@ -1,0 +1,149 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-color: #0f2c4d;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    background-color: #fff;
+    width: 1200px;
+    display: flex;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.signin-box {
+    display: flex;
+    width: 100%;
+}
+
+.signin-left {
+    padding: 40px;
+    width: 50%;
+}
+
+.signin-right {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden; /* Ensures the image does not overflow the container */
+}
+
+.signin-right img {
+    width: 100%;   /* Makes the image fill the width of the container */
+    height: 100%;  /* Makes the image fill the height of the container */
+    object-fit: cover; /* Ensures the image covers the container without distorting */
+}
+
+h2 {
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #333;
+}
+
+p {
+    margin-bottom: 30px;
+    font-size: 16px;
+    color: #666;
+}
+
+.input-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    color: #555;
+}
+
+input[type="email"],
+input[type="password"] {
+    width: calc(100% - 30px);
+    padding: 10px 15px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    outline: none;
+}
+
+input[type="password"] {
+    width: calc(100% - 50px);
+    padding-right: 35px;
+}
+
+.input-group i {
+    position: absolute;
+    right: 20px;
+    top: 48%;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+
+.btn {
+    width: 100%;
+    padding: 12px;
+    background-color: #f9a825;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #f57f17;
+}
+
+.extra-options {
+    margin-top: 10px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.extra-options a {
+    color: #666;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.signup-link {
+    margin-top: 20px;
+    font-size: 14px;
+    color: #666;
+}
+
+.signup-link a {
+    color: #f9a825;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.signup-link a:hover {
+    text-decoration: underline;
+}
+.alert {
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
+
+.alert-error {
+    color: #a94442;
+    background-color: #f2dede;
+    border-color: #ebccd1;
+}

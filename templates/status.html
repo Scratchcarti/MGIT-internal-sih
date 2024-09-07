@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    {% load filterss %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Status Dashboard</title>
+    <link rel="stylesheet" href="{% static 'stylesS.css' %}">
+</head>
+<body>
+    <div class="header">
+        <div class="logo">
+            <img src="{% static 'imagesD/aicte-logo.png' %}" alt="AICTE Logo" class="logo-img"> <!-- Assuming you have an AICTE logo named aicte-logo.png -->
+            <div class="text">
+                <p>अखिल भारतीय तकनीकी शिक्षा परिषद्</p>
+                <p>All India Council for Technical Education</p>
+            </div>
+        </div>
+        <button class="logout-btn">Logout</button>
+    </div>
+    <div class="dashboard-container">
+        <div class="dashboard">
+            <h2>User Status Dashboard</h2>
+            <div class="status-section">
+                
+                <p>Application Form: <span class="{{application_status}}">{{application_status | space}}</span></p>
+                <h3>Document Verification Status</h3>
+                {% for name, status in document_statuses.items %}
+                    <p>{{name | crkt}}: <span class="{{status}}">{{status | space}}</span></p>
+                {% endfor %}
+                <div class="progress-bar">
+                    <div class="progress" style="width: 0%;"></div>
+                </div>
+                <p>Overall Progress: 0%</p>
+            </div>
+            <div class="status-section">
+                <h3>Scholarship Status</h3>
+                <p>Scholarship Status: <span class="Pending">Pending</span></p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

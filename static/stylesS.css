@@ -1,0 +1,112 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #1a1a3b; /* Background color around the dashboard */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    height: 100vh;
+}
+
+.header {
+    width: 100%;
+    background-color: #f0f0f0; /* Background color for the header */
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo-img {
+    height: 50px; /* Adjust height as needed */
+    margin-right: 15px;
+}
+
+.text p {
+    margin: 0;
+    font-size: 14px;
+}
+
+.logout-btn {
+    background-color: #f88344; /* orange color */
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.logout-btn:hover {
+    background-color: #d32f2f; /* Darker red on hover */
+}
+
+.dashboard-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1; /* Ensures the container takes up the remaining space */
+}
+
+.dashboard {
+    background-color: #ffffe0; /* Pale yellow for the dashboard part */
+    padding: 30px; /* Increase padding for more space inside the dashboard */
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 500px; /* Make the dashboard bigger */
+    text-align: center;
+}
+
+h2 {
+    margin-top: 0;
+}
+
+.status-section {
+    margin-bottom: 20px;
+}
+
+.Verified {
+    color: green;
+}
+
+.Submitted {
+    color: green;
+}
+.Pending {
+    color: orange;
+}
+
+.rejected {
+    color: red;
+}
+
+.Not-Submitted {
+    color: yellow;
+}
+
+.Not-Uploaded {
+    color: purple;
+}
+.awarded {
+    color: blue;
+}
+
+.progress-bar {
+    width: 100%;
+    background-color: #e0e0e0;
+    border-radius: 5px;
+    overflow: hidden;
+    margin: 10px 0;
+}
+
+.progress {
+    height: 10px;
+    background-color: green;
+}

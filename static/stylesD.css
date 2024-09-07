@@ -1,0 +1,123 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #1a1a3b; /* Dark blue background */
+    margin: 0;
+    padding: 0;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    background-color: #fff7d2; /* Light grey background */
+    padding: 10px;
+    width: 100%;
+    box-sizing: border-box;
+    border-bottom: 5px solid #1a1a3b;
+}
+
+.header img {
+    height: 60px;
+    margin-right: 20px;
+}
+
+.header-text {
+    font-size: 18px;
+    color: #000000; /* Black text */
+}
+
+.dashboard-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: calc(100vh - 400px); /* Subtract header height */
+    box-sizing: border-box;
+}
+
+.dashboard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 600px; /* Limit the width of the dashboard */
+    padding: 20px;
+}
+
+.dashboard-item {
+    width: 100%;
+    text-align: center;
+    padding: 20px;
+    margin: 10px 0; /* Margin for spacing */
+    color: #000000; /* Black text */
+    font-weight: bold;
+    text-decoration: none;
+    border-radius: 8px;
+    background-color: rgba(212, 160, 23, 0.8); /* Semi-transparent background */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Slight shadow for depth */
+}
+
+#app-submission {
+    background-color: rgba(255, 222, 90, 0.8); /* Ochre yellow with transparency */
+}
+
+#doc-upload {
+    background-color: rgba(239, 201, 7, 0.8); /* Light ochre yellow with transparency */
+}
+
+#doc-verification {
+    background-color: rgba(220, 143, 27, 0.8); /* Darker ochre with transparency */
+}
+
+.dashboard-item:hover {
+    opacity: 0.9; /* Slightly dim when hovering */
+}
+
+.logout-container {
+    margin-left: auto;
+}
+
+.logout-button {
+    background-color: #f88344; /* orange color */
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.logout-button:hover {
+    background-color: #d32f2f; /* Darker red on hover */
+}
+
+.welcome-bar {
+    background-color: #fff7d1; /* Pastel yellow background */
+    color: #000000; /* Black text */
+    text-align: center;
+    padding: 15px;
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 20px; /* Space between the welcome bar and the dashboard */
+}
+
+.alert-error {
+    color: #ff0000; /* Red text color */
+    background-color: #fff7d1; /* Ochre yellow background */
+    border-color: #b5651d; /* Optional: Darker ochre for the border */
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 4px;
+    font-size: 16px;
+    text-align: center;
+}
+
+.alert-success {
+    color: #3c763d;
+    background-color: #dff0d8;
+    border-color: #d6e9c6;
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 4px;
+    font-size: 16px;
+    text-align: center;
+}

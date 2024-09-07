@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PMSSS Dashboard</title>
+    <link rel="stylesheet" href="{% static 'stylesD.css' %}">
+</head>
+<script>
+</script>
+<body>
+    <div class="header">
+        <img src="{% static 'imagesD/aicte-logo.png' %}" alt="AICTE Logo">
+        <div class="header-text">
+            अखिल भारतीय तकनीकी शिक्षा परिषद<br>
+            All India Council for Technical Education            
+        </div>
+        <div class="logout-container">
+            <a href="{% url 'logout' %}" class="logout-button">Logout</a>
+        </div>      
+    </div>
+
+    
+
+    <div class="welcome-bar">
+        Welcome {{user.first_name}} !
+    </div>
+    
+    {% if messages %}
+        <div class="messages">
+            {% for message in messages %}
+            <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}">
+                {{ message }}
+            </div>
+            {% endfor %}
+    {% endif %}
+    
+    <div class="dashboard-container">                     
+        <div class="dashboard">                       
+            <a href="{% url 'application' %}" class="dashboard-item" id="app-submission">APPLICATION SUBMISSION</a>
+            <a href="{% url 'upload' %}" class="dashboard-item" id="doc-upload">DOCUMENT UPLOAD</a>
+            <a href="{% url 'status' %}" class="dashboard-item" id="doc-verification">DOCUMENT VERIFICATION & SCHOLARSHIP STATUS</a>           
+        </div>
+    </div>
+</body>
+</html>

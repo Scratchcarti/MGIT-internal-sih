@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PMSSS Scholarship Application Form</title>
+    <link rel="stylesheet" href="{% static 'stylesA.css' %}">
+    <script>
+
+        window.addEventListener('beforeunload', function(event) {
+            // Check if the user is leaving the site
+            if (!document.referrer || document.referrer.indexOf(window.location.host) === -1) {
+                // If the referrer is not from your domain, log out the user
+                navigator.sendBeacon('/logout/');
+            }
+        });
+        
+        
+        function validateForm() {
+            const mobileNumber = document.getElementById("mobileNumber").value;
+            const alternateContact = document.getElementById("alternateContact").value;
+
+            // Check if mobile numbers match
+            if (mobileNumber === alternateContact) {
+                alert("Mobile number and Alternate contact number must be different.");
+                return false;
+            }
+
+            // Check if all required fields are filled
+            const requiredFields = document.querySelectorAll("input[required]");
+            for (let i = 0; i < requiredFields.length; i++) {
+                if (!requiredFields[i].value) {
+                    alert("Please fill in all required fields.");
+                    return false;
+                }
+            }
+
+            return true; // All checks passed
+        }
+
+        
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>PMSSS Scholarship Application Form</h1>
+        <form action="{% url 'application' %}" method="post" onsubmit="return validateForm();">
+            {% csrf_token %}
+            <h2>Personal Details</h2>
+            <label for="candidateName">Candidate's Name:</label>
+            <input type="text" id="candidateName" name="candidateName" required>
+
+            <label for="fatherName">Father's Name:</label>
+            <input type="text" id="fatherName" name="fatherName" required>
+
+            <label for="motherName">Mother's Name:</label>
+            <input type="text" id="motherName" name="motherName" required>
+
+            <label for="dob">Candidate Date of Birth:</label>
+            <input type="date" id="dob" name="dob" required>
+
+            <label for="state12th">State/UT from where 12th/Equivalent Passed/Appearing:</label>
+            <input type="text" id="state12th" name="state12th" required>
+
+            <label for="category">Category:</label>
+            <input type="text" id="category" name="category" required>
+
+            <label for="fatherOccupation">Father's Occupation:</label>
+            <input type="text" id="fatherOccupation" name="fatherOccupation" required>
+
+            <label for="motherOccupation">Mother's Occupation:</label>
+            <input type="text" id="motherOccupation" name="motherOccupation" required>
+
+            <h2>Present Address</h2>
+            <label for="address">Address:</label>
+            <input type="text" id="address" name="address" required>
+
+            <label for="city">City/Town/Village:</label>
+            <input type="text" id="city" name="city" required>
+
+            <label for="state">State:</label>
+            <input type="text" id="state" name="state" required>
+
+            <label for="pinCode">Pin Code:</label>
+            <input type="text" id="pinCode" name="pinCode" required>
+
+            <label for="locality">Locality:</label>
+            <input type="text" id="locality" name="locality">
+
+            <label for="country">Country:</label>
+            <input type="text" id="country" name="country" required>
+
+            <label for="district">District:</label>
+            <input type="text" id="district" name="district">
+
+            <label for="mobileNumber">Mobile Number:</label>
+            <input type="tel" id="mobileNumber" name="mobileNumber" required pattern="[0-9]{10}" placeholder="10-digit mobile number">
+
+            <label for="alternateContact">Alternate Contact No.:</label>
+            <input type="tel" id="alternateContact" name="alternateContact" pattern="[0-9]{10}" placeholder="10-digit alternate number">
+
+            <label for="email">E-mail Address:</label>
+            <input type="email" id="email" name="email" required>
+
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+</body>
+</html>

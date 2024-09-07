@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document Upload</title>
+    <link rel="stylesheet" href="{% static 'stylesU.css' %}">
+    <style>
+        .error-message {
+            color: red;
+            margin-top: 10px;
+        }
+
+        .clear-button {
+            background-color: #dc3545; /* Bootstrap danger color */
+            color: white;
+            border: none;
+            padding: 10px; /* Match the file input height */
+            border-radius: 5px;
+            cursor: pointer;
+            margin-left: 10px; /* Space between button and input */
+            height: 100%; /* Make the button height equal to the input */
+        }
+
+        .clear-button:hover {
+            background-color: #c82333; /* Darker shade on hover */
+        }
+
+        .reset-button {
+            background-color: #17a2b8; /* Bootstrap info color */
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        .reset-button:hover {
+            background-color: #138496; /* Darker shade on hover */
+        }
+
+        .submit-button {
+            background-color: #dc3545; /* Red color */
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        .submit-button:hover {
+            background-color: #c82333; /* Darker shade on hover */
+        }
+
+        .file-input-container {
+            display: flex;
+            align-items: center;
+        }
+
+        input[type="file"] {
+            flex-grow: 1; /* Make the file input take available space */
+        }
+    </style>
+    <script>
+        function validateFiles(event) {
+            const fileInputs = document.querySelectorAll('input[type="file"]');
+            let valid = true;
+            let errorMessage = '';
+
+            fileInputs.forEach(input => {
+                const file = input.files[0];
+                if (file && file.size > 20 * 1024) { // 20 KB in bytes
+                    valid = false;
+                    errorMessage += `The file ${file.name} exceeds the 20 KB limit.\n`;
+                }
+            });
+
+            if (!valid) {
+                alert(errorMessage); // Alert all file errors
+                event.preventDefault(); // Prevent form submission if validation fails
+            }
+        }
+
+        function clearFileInput(inputId) {
+            const fileInput = document.getElementById(inputId);
+            fileInput.value = ''; // Clear the file input
+        }
+
+        function resetForm() {
+            const form = document.querySelector('.upload-form');
+            form.reset(); // Reset the form fields
+        }
+    </script>
+</head>
+<body>
+    <div class="form-container">
+        <form class="upload-form" onsubmit="validateFiles(event)" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <h2>Upload Documents</h2>
+
+            <label for="aadhaar">Candidate's Aadhaar Card:</label>
+            <div class="file-input-container">
+                <input type="file" id="aadhaar" name="aadhaar" required>
+                <button type="button" class="clear-button" onclick="clearFileInput('aadhaar')">Clear</button>
+            </div>
+            <div class="error-message" id="aadhaarError"></div>
+
+            <label for="income">Family Income Certificate:</label>
+            <div class="file-input-container">
+                <input type="file" id="income" name="income" required>
+                <button type="button" class="clear-button" onclick="clearFileInput('income')">Clear</button>
+            </div>
+            <div class="error-message" id="incomeError"></div>
+
+            <label for="caste">Caste Certificate:</label>
+            <div class="file-input-container">
+                <input type="file" id="caste" name="caste" required>
+                <button type="button" class="clear-button" onclick="clearFileInput('caste')">Clear</button>
+            </div>
+            <div class="error-message" id="casteError"></div>
+
+            <label for="domicile">Domicile Certificate:</label>
+            <div class="file-input-container">
+                <input type="file" id="domicile" name="domicile" required>
+                <button type="button" class="clear-button" onclick="clearFileInput('domicile')">Clear</button>
+            </div>
+            <div class="error-message" id="domicileError"></div>
+
+            <label for="tenth">10th Certificate:</label>
+            <div class="file-input-container">
+                <input type="file" id="tenth" name="tenth" required>
+                <button type="button" class="clear-button" onclick="clearFileInput('tenth')">Clear</button>
+            </div>
+            <div class="error-message" id="tenthError"></div>
+
+            <label for="twelfth">12th Certificate:</label>
+            <div class="file-input-container">
+                <input type="file" id="twelfth" name="twelfth">
+                <button type="button" class="clear-button" onclick="clearFileInput('twelfth')">Clear</button>
+            </div>
+            <div class="error-message" id="twelfthError"></div>
+
+            <button type="submit" class="submit-button">Upload</button>
+            <button type="button" class="reset-button" onclick="resetForm()">Reset</button>
+        </form>
+    </div>
+</body>
+</html>
