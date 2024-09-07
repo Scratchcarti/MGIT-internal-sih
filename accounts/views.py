@@ -191,3 +191,12 @@ def verify_otp(request):
             messages.error(request,'Invalid OTP')
             return render(request, 'verify_otp.html')
     return render(request, 'verify_otp.html')
+
+def sag(request):
+    test=19
+    name = User.objects.filter(id=test)
+    uploaded_documents = Document.objects.filter(user_id=test)
+    print(list(uploaded_documents))
+    
+    return render(request,'sag.html',{'documents': uploaded_documents})
+
