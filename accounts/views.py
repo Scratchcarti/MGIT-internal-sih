@@ -3,12 +3,16 @@ from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.forms import  AuthenticationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from django.core.mail import send_mail
 from .models import Application,Document
 from django.views.decorators.csrf import csrf_exempt
-from django.core.mail import send_mail
-from django.contrib.auth.models import User
 from django.conf import settings
 import random
+
+
+
+
+from django.contrib.auth.models import User
 
 def index(request):
     
@@ -23,9 +27,13 @@ def register(request):
         username = request.POST.get('username')  # 'username' is used for email in the form
         mobile = request.POST.get('mobile')
         password = request.POST.get('password')
+        cp = request.POST.get('confirm')
 
         if not fullname or not username or not mobile or not password:
             messages.error(request, 'All fields are required.')
+
+        if (cp != password):
+            messages.error(request,'Passwords donot match')
 
         if User.objects.filter(username=username).exists():
             messages.error(request, 'Email is already registered.')
@@ -65,6 +73,8 @@ def login_view(request):
             messages.error(request, 'Invalid username or password.')
             return render(request, 'login.html')
     return render(request, 'login.html')
+
+
 
 @login_required
 def dashboard(request):
@@ -117,10 +127,7 @@ def upload(request):
 
     if request.method == 'POST':
         user = request.user
-
-        if Document.objects.filter(user=user).exists():
-            messages.error(request, 'You have already submitted the documents!!!')
-            return redirect('dashboard')
+        print(list(request.FILES.items()))
 
         for doc_type, file in request.FILES.items():
             Document.objects.create(user=user, doc_type=doc_type, document=file)
@@ -164,14 +171,6 @@ def status(request):
 
     return render(request, 'status.html', insane)
 
-
-def sag(request):
-    test=19
-    name = User.objects.filter(id=test)
-    uploaded_documents = Document.objects.filter(user_id=test)
-    print(list(uploaded_documents))
-    
-    return render(request,'sag.html',{'documents': uploaded_documents})
 
 def send_otp_via_email(email, otp):
     subject = 'Your OTP Code'
