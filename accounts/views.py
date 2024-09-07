@@ -5,9 +5,10 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .models import Application,Document
 from django.views.decorators.csrf import csrf_exempt
-
-
+from django.core.mail import send_mail
 from django.contrib.auth.models import User
+from django.conf import settings
+import random
 
 def index(request):
     
@@ -49,26 +50,21 @@ def register(request):
     
 def login_view(request):
     
-    if request.user.is_authenticated:
-        # Redirect to dashboard if the user is already logged in
-        return redirect('dashboard')
-     
     if request.method == 'POST':
-        form = AuthenticationForm(request, data=request.POST)
-        form.is_valid()
-        username = form.cleaned_data.get('username')
-        password = form.cleaned_data.get('password')
-        user = authenticate(request,username=username, password=password)
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        user = authenticate(request, username=username, password=password)
+        
         if user is not None:
-            login(request, user)
-            return redirect('dashboard')
+            otp = random.randint(100000, 999999)
+            request.session['otp'] = otp
+            request.session['username'] = username
+            send_otp_via_email(username, otp)
+            return redirect('verify_otp')
         else:
             messages.error(request, 'Invalid username or password.')
-
-    else:
-        form = AuthenticationForm()
-    
-    return render(request, 'login.html', {'form': form})
+            return render(request, 'login.html')
+    return render(request, 'login.html')
 
 @login_required
 def dashboard(request):
@@ -176,3 +172,23 @@ def sag(request):
     print(list(uploaded_documents))
     
     return render(request,'sag.html',{'documents': uploaded_documents})
+
+def send_otp_via_email(email, otp):
+    subject = 'Your OTP Code'
+    message = f'Your OTP code is {otp}'
+    email_from = settings.EMAIL_HOST_USER
+    recipient_list = [email]
+    send_mail(subject, message, email_from, recipient_list)
+
+def verify_otp(request):
+    if request.method == 'POST':
+        entered_otp = request.POST.get('otp')
+        if int(entered_otp) == request.session.get('otp'):
+            username = request.session.get('username')
+            user = User.objects.get(username=username)
+            login(request, user)
+            return redirect('dashboard')  # Redirect to a secure page after successful login
+        else:
+            messages.error(request,'Invalid OTP')
+            return render(request, 'verify_otp.html')
+    return render(request, 'verify_otp.html')
